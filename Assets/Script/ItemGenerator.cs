@@ -16,6 +16,7 @@ public class ItemGenerator : MonoBehaviour
 
     private float posRange = 3.4f;
 
+    UnityChanController uc=new UnityChanController();
     // Use this for initialization
     void Start()
     {
@@ -28,8 +29,11 @@ public class ItemGenerator : MonoBehaviour
                 {
                     GameObject cone = Instantiate(conePrefab);
                     cone.transform.position = new Vector3(4 * j, cone.transform.position.y, i);
+
+                    
                 }
             }
+
             else
             {
                 for (int j = -1; j <= 1; j++)
@@ -57,6 +61,12 @@ public class ItemGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    void Destroy(float z)
+    {
+        float Z = uc.GetUnitychan_Z();
+
+        //if(Z>=)
     }
 }

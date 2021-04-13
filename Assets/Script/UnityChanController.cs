@@ -23,6 +23,8 @@ public class UnityChanController : MonoBehaviour
 
     private int score = 0;
 
+    private float PosZ = 0;
+
     //テキスト表示
     private GameObject stateText;
     private GameObject scoreText;
@@ -35,7 +37,6 @@ public class UnityChanController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         this.myAnimator = GetComponent<Animator>();
 
         this.myAnimator.SetFloat("Speed", 1);
@@ -73,7 +74,6 @@ public class UnityChanController : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.Space) || this.isJButtonDown) && this.transform.position.y < 0.5f)
         {
-
             this.myAnimator.SetBool("Jump", true);
 
             inputVelocityY = this.velocityY;
@@ -90,10 +90,11 @@ public class UnityChanController : MonoBehaviour
         }
 
         this.myRigidbody.velocity = new Vector3(inputVelocityX, inputVelocityY, velocityZ);
+
     }
 
 
-    void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "CarTag" || other.gameObject.tag == "TrafficConeTag")
         {
@@ -117,6 +118,18 @@ public class UnityChanController : MonoBehaviour
 
             Destroy(other.gameObject);
         }
+  }
+
+    public float GetUnitychan_Z()
+    {
+        Vector3 pos = GameObject.Find("unitychan").transform.position;
+        GameObject.Find("unitychan").transform.position = new Vector3(pos.x, pos.y, pos.z);
+
+        PosZ = pos.z;
+
+        Debug.Log(PosZ);
+
+        return PosZ;
     }
 
     public void GetMyJumpButtonDown()
