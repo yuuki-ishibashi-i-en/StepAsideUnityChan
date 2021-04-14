@@ -23,7 +23,7 @@ public class UnityChanController : MonoBehaviour
 
     private int score = 0;
 
-    private float PosZ = 0;
+    private float CameraZ;
 
     //テキスト表示
     private GameObject stateText;
@@ -46,6 +46,7 @@ public class UnityChanController : MonoBehaviour
         this.stateText = GameObject.Find("GameResultText");
 
         this.scoreText = GameObject.Find("ScoreText");
+
     }
 
     // Update is called once per frame
@@ -90,9 +91,7 @@ public class UnityChanController : MonoBehaviour
         }
 
         this.myRigidbody.velocity = new Vector3(inputVelocityX, inputVelocityY, velocityZ);
-
     }
-
 
     public void OnTriggerEnter(Collider other)
     {
@@ -120,16 +119,12 @@ public class UnityChanController : MonoBehaviour
         }
   }
 
-    public float GetUnitychan_Z()
+    public Vector3 GetUnitychanZ()
     {
         Vector3 pos = GameObject.Find("unitychan").transform.position;
         GameObject.Find("unitychan").transform.position = new Vector3(pos.x, pos.y, pos.z);
 
-        PosZ = pos.z;
-
-        Debug.Log(PosZ);
-
-        return PosZ;
+        return pos;
     }
 
     public void GetMyJumpButtonDown()

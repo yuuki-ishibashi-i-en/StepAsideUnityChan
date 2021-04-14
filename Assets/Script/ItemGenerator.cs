@@ -16,7 +16,6 @@ public class ItemGenerator : MonoBehaviour
 
     private float posRange = 3.4f;
 
-    UnityChanController uc=new UnityChanController();
     // Use this for initialization
     void Start()
     {
@@ -29,8 +28,6 @@ public class ItemGenerator : MonoBehaviour
                 {
                     GameObject cone = Instantiate(conePrefab);
                     cone.transform.position = new Vector3(4 * j, cone.transform.position.y, i);
-
-                    
                 }
             }
 
@@ -46,6 +43,7 @@ public class ItemGenerator : MonoBehaviour
                     {
                         GameObject coin = Instantiate(coinPrefab);
                         coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, i + offsetZ);
+
                     }
 
                     else if (7 <= item && item <= 9)
@@ -63,10 +61,4 @@ public class ItemGenerator : MonoBehaviour
     {
     }
 
-    void Destroy(float z)
-    {
-        float Z = uc.GetUnitychan_Z();
-
-        //if(Z>=)
-    }
 }
