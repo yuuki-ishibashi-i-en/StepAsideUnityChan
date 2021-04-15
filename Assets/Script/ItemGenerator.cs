@@ -10,7 +10,7 @@ public class ItemGenerator : MonoBehaviour
 
     public GameObject conePrefab;
 
-    private int startPos = 80;
+    private int startPos =50;
 
     private int goalPos = 360;
 
