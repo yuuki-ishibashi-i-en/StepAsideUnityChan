@@ -10,16 +10,51 @@ public class ItemGenerator : MonoBehaviour
 
     public GameObject conePrefab;
 
+    private GameObject unitychan;
+
+    Vector3 UnityChanPos;
+
     private int startPos =50;
 
-    private int goalPos = 360;
+    private int goalPos = 80;
 
     private float posRange = 3.4f;
+
+    int FrameCount = 0;
 
     // Use this for initialization
     void Start()
     {
-        for (int i = startPos; i < goalPos; i += 15)
+        this.unitychan = GameObject.Find("unitychan");
+
+        Create(startPos, goalPos);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        FrameCount += 1;
+        if (FrameCount >= 80)
+        {
+            UnityChanPos = this.unitychan.transform.position;
+
+            startPos = (int)UnityChanPos.z+40;
+            goalPos = (int)UnityChanPos.z + 80;
+
+            Create(startPos, goalPos);
+
+            if (goalPos >= 380)
+            {
+                goalPos = 380;
+            }
+
+            FrameCount = 0;
+        }
+    }
+
+    void Create(int Start, int End)
+    {
+        for (int i = Start; i < End; i += 15)
         {
             int num = Random.Range(1, 11);
             if (num <= 2)
@@ -43,7 +78,6 @@ public class ItemGenerator : MonoBehaviour
                     {
                         GameObject coin = Instantiate(coinPrefab);
                         coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, i + offsetZ);
-
                     }
 
                     else if (7 <= item && item <= 9)
@@ -55,10 +89,4 @@ public class ItemGenerator : MonoBehaviour
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
 }

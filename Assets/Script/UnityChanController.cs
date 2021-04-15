@@ -9,11 +9,11 @@ public class UnityChanController : MonoBehaviour
 
     private Rigidbody myRigidbody;
 
-    private float velocityZ = 16f;
-
     private float velocityX = 10f;
 
     private float velocityY = 10f;
+
+    private float velocityZ = 16f;
 
     private float movableRange = 3.4f;
 
@@ -22,8 +22,6 @@ public class UnityChanController : MonoBehaviour
     private bool isEnd = false;
 
     private int score = 0;
-
-    private float CameraZ;
 
     //テキスト表示
     private GameObject stateText;
@@ -54,9 +52,10 @@ public class UnityChanController : MonoBehaviour
     {
         if (this.isEnd)
         {
-            this.velocityZ *= this.coefficient;
             this.velocityX *= this.coefficient;
             this.velocityY *= this.coefficient;
+            this.velocityZ *= this.coefficient;
+
             this.myAnimator.speed *= this.coefficient;
         }
 
@@ -118,14 +117,6 @@ public class UnityChanController : MonoBehaviour
             Destroy(other.gameObject);
         }
   }
-
-    public Vector3 GetUnitychanZ()
-    {
-        Vector3 pos = GameObject.Find("unitychan").transform.position;
-        GameObject.Find("unitychan").transform.position = new Vector3(pos.x, pos.y, pos.z);
-
-        return pos;
-    }
 
     public void GetMyJumpButtonDown()
     {
