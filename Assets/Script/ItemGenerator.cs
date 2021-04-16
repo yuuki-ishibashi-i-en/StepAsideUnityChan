@@ -14,13 +14,14 @@ public class ItemGenerator : MonoBehaviour
 
     Vector3 UnityChanPos;
 
-    private int startPos =50;
+    private int startPos = 50;
 
     private int goalPos = 80;
 
+    private int OldPos = 40;
+
     private float posRange = 3.4f;
 
-    int FrameCount = 0;
 
     // Use this for initialization
     void Start()
@@ -33,12 +34,12 @@ public class ItemGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FrameCount += 1;
-        if (FrameCount >= 80)
-        {
-            UnityChanPos = this.unitychan.transform.position;
+        UnityChanPos = this.unitychan.transform.position;
 
-            startPos = (int)UnityChanPos.z+40;
+        if ((int)UnityChanPos.z - OldPos >= 30)
+        {
+
+            startPos = (int)UnityChanPos.z + 40;
             goalPos = (int)UnityChanPos.z + 80;
 
             Create(startPos, goalPos);
@@ -48,7 +49,7 @@ public class ItemGenerator : MonoBehaviour
                 goalPos = 380;
             }
 
-            FrameCount = 0;
+            OldPos = (int)UnityChanPos.z;
         }
     }
 
